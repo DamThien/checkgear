@@ -1,0 +1,12 @@
+{
+    "name": "checkgear",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {
+      "dev": "concurrently \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\""
+    },
+    "devDependencies": {
+      "concurrently": "^8.2.2"
+    }
+  }
+  
