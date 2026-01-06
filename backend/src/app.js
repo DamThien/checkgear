@@ -1,17 +1,13 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+import 'dotenv/config';
+import express from 'express';
+import connectDB from '../config/db.js';
+import { crawlGearVNCpu } from './crawlers/gearvn.cpu.crawler.js';
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+await connectDB();
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', service: 'backend' });
+app.listen(3000, async () => {
+  console.log('Server running on port 3000');
+  await crawlGearVNCpu(); // test thủ công
 });
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () =>
-  console.log(`Backend running on http://localhost:${PORT}`)
-);
