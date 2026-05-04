@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
   name: String,
-  category: String, // CPU | GPU | RAM | SSD
+  category: String, // CPU | VGA | RAM | SSD
   imageUrl: String,
   specs: Object
 });

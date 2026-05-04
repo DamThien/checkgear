@@ -1,68 +1,66 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Geist+Mono:wght@400;500;700&family=Geist:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+@theme {
+  --color-bg: #05080f;
+  --color-surface: #0b1120;
+  --color-surface2: #101828;
+  --color-panel: #0d1526;
+  --color-border: rgba(148,163,184,0.08);
+  --color-border2: rgba(148,163,184,0.15);
+  --color-accent: #3b82f6;
+  --color-accent2: #1d4ed8;
+  --color-accent-dim: rgba(59,130,246,0.15);
+  --color-accent-glow: rgba(59,130,246,0.25);
+  --color-cyan: #06b6d4;
+  --color-emerald: #10b981;
+  --color-amber: #f59e0b;
+  --color-rose: #f43f5e;
+  --color-text: #f1f5f9;
+  --color-muted: #94a3b8;
+  --color-faint: #475569;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-body: 'Geist', sans-serif;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+html { height: 100%; }
+html {
+  transform: scale(1.25);
+  transform-origin: top left;
+  width: calc(100% / 1.25);
+  height: calc(100% / 1.25);
 }
+body { height: 100%; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+#root { height: 100%; }
+input, select, textarea, button { font-family: var(--font-body); }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border2); border-radius: 99px; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+
+.animate-fade-up { animation: fadeUp 0.35s ease both; }
+.animate-fade-in { animation: fadeIn 0.25s ease both; }
+.animate-spin { animation: spin 0.7s linear infinite; }
+
+.stagger > * { animation: fadeUp 0.35s ease both; }
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 60ms; }
+.stagger > *:nth-child(3) { animation-delay: 120ms; }
+.stagger > *:nth-child(4) { animation-delay: 180ms; }
+.stagger > *:nth-child(5) { animation-delay: 240ms; }
+.stagger > *:nth-child(6) { animation-delay: 300ms; }
+
+.skeleton { background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-surface2) 50%, var(--color-surface) 75%); background-size: 200% 100%; animation: shimmer 1.4s ease infinite; border-radius: var(--radius); }
+.glass { background: rgba(13,21,38,0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
